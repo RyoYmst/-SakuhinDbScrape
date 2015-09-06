@@ -22,18 +22,19 @@ def ExtractUrl():
 
 
 def ExtractReview(all_url):
-	review_text()
+	review_text = []
 	html = urllib2.urlopen(all_url[0])
 	soup = BeautifulSoup(html)
-	for review in soup.findAll(itemprop = "reviewBody"):#.get_text()
-		print review.text
-
+	for each_review in soup.findAll(itemprop = "reviewBody"):#.get_text()
+		review_text.append(each_review.text)
+	return review_text
 
 
 def main():
 	extract_url = ExtractUrl()#対象作品の全レビューページ
 	extract_review = ExtractReview(extract_url)
-    
+	for i in extract_review:
+		print i
     
 
 	
